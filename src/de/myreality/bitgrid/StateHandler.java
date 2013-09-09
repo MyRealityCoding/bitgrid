@@ -51,8 +51,8 @@ public class StateHandler {
 	// Methods
 	// ===========================================================
 	
-	public boolean get(int index, int element) {
-		return index >> (element & (1 << index)) == 1;
+	public boolean get(int index, int element) {		
+		return ((element >> index) & 1) != 0;
 	}
 	
 	public int clear(int index, int element) {

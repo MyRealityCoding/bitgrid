@@ -18,7 +18,7 @@
  */
 package de.myreality.bitgrid;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,5 +59,14 @@ public class StateHandlerTest {
 			assertTrue("element has to be " + value, handler.set(i, element) == value);
 			value *= 2;
 		}
+	}
+	
+	@Test
+	public void testGet() {
+		int element = 5;
+		
+		assertTrue("First index has to be true instead of " + handler.get(0, element), handler.get(0, element));
+		assertFalse("Second index has to be false instead of " + handler.get(1, element), handler.get(1, element));
+		assertTrue("Third index has to be true instead of " + handler.get(2, element), handler.get(2, element));
 	}
 }

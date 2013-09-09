@@ -58,14 +58,11 @@ class FieldHandler {
 	// ===========================================================
 	
 	public boolean set(int x, int y, int[][] field) {
-		
 		if (!getState(x, y, field) && validIndex(x, y, field)) {
 			
 			int position = getPosition(x);
-			int segmentID = getSegmentID(x);
-			
-			field[y][segmentID] = handler.set(position, field[y][segmentID]);		
-			
+			int segmentID = getSegmentID(x);			
+			field[y][segmentID] = handler.set(position, field[y][segmentID]);
 			return true;
 		} else {
 			return false;
@@ -105,7 +102,7 @@ class FieldHandler {
 	}
 
 	private boolean validIndex(int x, int y, int[][] field) {
-		return y < field.length && x < field[y].length && x > 0 && y > 0;
+		return y < field.length  && x > 0 && y > 0;
 	}
 	
 	// ===========================================================
