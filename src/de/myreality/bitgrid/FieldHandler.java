@@ -52,11 +52,33 @@ class FieldHandler {
 	// ===========================================================
 	
 	public boolean setState(int x, int y, boolean state, int[][] field) {
-		return false;
+		
+		int length = getBitLength(field);
+		
+		if (getState(x, y, field) != state) {
+			
+			int element = field[y][getBitIndex(x, field[y])];
+			
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean getState(int x, int y, int[][] field) {
 		return false;
+	}
+
+	private int getBitLength(int[][] field) {
+		return 0;
+	}
+	
+	private int getBitIndex(int xIndex, int[] elements) {
+		return 0;
+	}
+	
+	private int getBitPosition(int xIndex, int[] elements) {
+		return 0;
 	}
 
 	// ===========================================================
