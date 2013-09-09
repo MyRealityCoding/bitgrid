@@ -104,7 +104,7 @@ class FieldHandler {
 	}
 
 	private boolean validIndex(int x, int y, int[][] field) {
-		return y < field.length  && x > 0 && y > 0 && x < grid.getWidth() && y < grid.getHeight();
+		return y < field.length  && x >= 0 && y >= 0 && x < grid.getWidth() && y < grid.getHeight();
 	}
 	
 	// ===========================================================
