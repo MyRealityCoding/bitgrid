@@ -34,10 +34,16 @@ class FieldHandler {
 	// ===========================================================
 	// Fields
 	// ===========================================================
+	
+	private StateHandler handler;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
+	
+	public FieldHandler() {
+		handler = new StateHandler();
+	}
 
 	// ===========================================================
 	// Getters and Setters
@@ -51,13 +57,28 @@ class FieldHandler {
 	// Methods
 	// ===========================================================
 	
-	public boolean setState(int x, int y, boolean state, int[][] field) {
+	public boolean set(int x, int y, int[][] field) {
 		
-		int length = getBitLength(field);
-		
-		if (getState(x, y, field) != state) {
+		if (!getState(x, y, field)) {
 			
-			int element = field[y][getBitIndex(x, field[y])];
+			int position = getPosition(x);
+			int segmentID = getSegmentID(x);
+			
+			field[y][segmentID] = handler.set(position, field[y][segmentID]);		
+			
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean clear(int x, int y, int[][] field) {
+		if (getState(x, y, field)) {
+			
+			int position = getPosition(x);
+			int segmentID = getSegmentID(x);
+			
+			field[y][segmentID] = handler.clear(position, field[y][segmentID]);		
 			
 			return true;
 		} else {
@@ -66,19 +87,18 @@ class FieldHandler {
 	}
 	
 	public boolean getState(int x, int y, int[][] field) {
-		return false;
-	}
-
-	private int getBitLength(int[][] field) {
-		return 0;
-	}
-	
-	private int getBitIndex(int xIndex, int[] elements) {
-		return 0;
+		int position = getPosition(x);
+		int segmentID = getSegmentID(x);
+		
+		return handler.get(position, field[y][segmentID]);
 	}
 	
-	private int getBitPosition(int xIndex, int[] elements) {
-		return 0;
+	private int getSegmentID(int x) {
+		return x % 32;
+	}
+	
+	private int getPosition(int x) {
+		return (getSegmentID(x) + 1) * 32 - x;
 	}
 
 	// ===========================================================

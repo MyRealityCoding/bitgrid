@@ -19,13 +19,13 @@
 package de.myreality.bitgrid;
 
 /**
- * Main class which provides a basic grid
+ * Handles the state of a given type
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class BitGrid {
+public class StateHandler {
 
 	// ===========================================================
 	// Constants
@@ -34,35 +34,14 @@ public class BitGrid {
 	// ===========================================================
 	// Fields
 	// ===========================================================
-	
-	private int[][] field;
-	
-	private int width, height;
-	
-	private FieldHandler handler;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
-	
-	public BitGrid(int width, int height) {
-		this.width = width;
-		this.height = height;
-		handler = new FieldHandler();
-		clear();
-	}
 
 	// ===========================================================
 	// Getters and Setters
 	// ===========================================================
-	
-	public int getWidth() {
-		return width;
-	}
-	
-	public int getHeight() {
-		return height;
-	}
 
 	// ===========================================================
 	// Methods from Superclass
@@ -72,23 +51,17 @@ public class BitGrid {
 	// Methods
 	// ===========================================================
 	
-	public boolean set(int x, int y) {
-		return handler.set(x, y, field);
+	public boolean get(int index, int element) {
+		return index >> (element & (1 << index)) == 1;
 	}
 	
-	public boolean clear(int x, int y) {
-		return handler.clear(x, y, field);
+	public int clear(int index, int element) {
+		return element & ~(1 << index);
 	}
 	
-	public boolean get(int x, int y) {
-		return handler.getState(x, y, field);
+	public int set(int index, int element) {
+		return element | (1 << index);
 	}
-	
-	public void clear() {
-		FieldFactory factory = new SimpleFieldFactory();
-		this.field = factory.create(width, height);
-	}
-
 
 	// ===========================================================
 	// Inner classes
