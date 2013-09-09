@@ -61,8 +61,8 @@ public class BitGridDebugger {
 		
 		System.out.println("GRID DEBUG [" + grid.getWidth() + "x" + grid.getHeight() + "]\n");
 		
-		for (int x = 0; x < grid.getWidth(); ++x) {
-			for (int y = 0; y < grid.getHeight(); ++y) {
+		for (int y = 0; y < grid.getHeight(); ++y) {
+			for (int x = 0; x < grid.getWidth(); ++x) {
 				if (grid.get(x, y)) {
 					System.out.print("x ");
 				} else {

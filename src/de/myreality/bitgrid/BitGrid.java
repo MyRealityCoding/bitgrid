@@ -48,7 +48,7 @@ public class BitGrid {
 	public BitGrid(int width, int height) {
 		this.width = width;
 		this.height = height;
-		handler = new FieldHandler();
+		handler = new FieldHandler(this);
 		clear();
 	}
 
@@ -73,7 +73,8 @@ public class BitGrid {
 	// ===========================================================
 	
 	public boolean set(int x, int y) {
-		return handler.set(x, y, field);
+		handler.set(x, y, field);
+		return true;
 	}
 	
 	public boolean clear(int x, int y) {

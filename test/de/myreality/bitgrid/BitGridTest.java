@@ -18,7 +18,8 @@
  */
 package de.myreality.bitgrid;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,12 +36,13 @@ public class BitGridTest {
 
 	BitGrid grid;
 	
+	BitGridDebugger debugger;
+	
 	@Before
 	public void setup() {
 		grid = new BitGrid(10, 10);
 		
-		BitGridDebugger debugger = new BitGridDebugger(grid);
-		debugger.print();
+		debugger = new BitGridDebugger(grid);
 	}
 	
 	@Test
@@ -49,6 +51,7 @@ public class BitGridTest {
 		assertTrue("Grid has to be true at 4|5", grid.get(4, 5));
 		assertFalse("Grid has to be false at -1,-1", grid.get(-1, -1));
 		assertFalse("Grid has to be false at 10,10", grid.get(10, 10));
+		debugger.print();
 	}
 	
 	@Test
