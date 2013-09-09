@@ -19,6 +19,10 @@ boolean isSet2 = grid.get(400,400); // will return true
 ```
 You can use this system to provide simple collision detection for tile based maps.
 
+### Download
+
+You can download a packed version [here](https://www.dropbox.com/sh/fifnk84rj7n54a0/iXHudwva8Y).
+
 ### Development
 
 If you have further questions, mail to [Miguel Gonzalez](mailto:miguel-gonzalez@gmx.de) or [visit his website](http://my-reality.de).
