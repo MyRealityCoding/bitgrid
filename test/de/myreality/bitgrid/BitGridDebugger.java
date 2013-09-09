@@ -19,13 +19,13 @@
 package de.myreality.bitgrid;
 
 /**
- * Scans a field for a given value
+ * Debugger for bitgrid
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-class FieldHandler {
+public class BitGridDebugger {
 
 	// ===========================================================
 	// Constants
@@ -35,14 +35,14 @@ class FieldHandler {
 	// Fields
 	// ===========================================================
 	
-	private StateHandler handler;
+	private BitGrid grid;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 	
-	public FieldHandler() {
-		handler = new StateHandler();
+	public BitGridDebugger(BitGrid grid) {
+		this.grid = grid;
 	}
 
 	// ===========================================================
@@ -57,57 +57,25 @@ class FieldHandler {
 	// Methods
 	// ===========================================================
 	
-	public boolean set(int x, int y, int[][] field) {
+	public void print() {
 		
-		if (!getState(x, y, field) && validIndex(x, y, field)) {
+		System.out.println("GRID DEBUG [" + grid.getWidth() + "x" + grid.getHeight() + "]\n");
+		
+		for (int x = 0; x < grid.getWidth(); ++x) {
+			for (int y = 0; y < grid.getHeight(); ++y) {
+				if (grid.get(x, y)) {
+					System.out.print("x ");
+				} else {
+					System.out.print("o ");
+				}
+			}
 			
-			int position = getPosition(x);
-			int segmentID = getSegmentID(x);
-			
-			field[y][segmentID] = handler.set(position, field[y][segmentID]);		
-			
-			return true;
-		} else {
-			return false;
+			System.out.println();
 		}
-	}
-	
-	public boolean clear(int x, int y, int[][] field) {
-		if (getState(x, y, field) && validIndex(x, y, field)) {
-			
-			int position = getPosition(x);
-			int segmentID = getSegmentID(x);
-			field[y][segmentID] = handler.clear(position, field[y][segmentID]);		
-			
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean getState(int x, int y, int[][] field) {
-		int position = getPosition(x);
-		int segmentID = getSegmentID(x);
-
-		if (!validIndex(x, y, field)) {
-			return false;
-		} else {
-			return handler.get(position, field[y][segmentID]);
-		}
-	}
-	
-	private int getSegmentID(int x) {
-		return x / 32;
-	}
-	
-	private int getPosition(int x) {
-		return (getSegmentID(x) + 1) * 32 - x;
+		
+		System.out.println("\n");
 	}
 
-	private boolean validIndex(int x, int y, int[][] field) {
-		return y < field.length && x < field[y].length && x > 0 && y > 0;
-	}
-	
 	// ===========================================================
 	// Inner classes
 	// ===========================================================
