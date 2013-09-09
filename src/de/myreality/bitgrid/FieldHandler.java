@@ -19,13 +19,13 @@
 package de.myreality.bitgrid;
 
 /**
- * Main class which provides a basic grid
+ * Scans a field for a given value
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class BitGrid {
+class FieldHandler {
 
 	// ===========================================================
 	// Constants
@@ -34,35 +34,14 @@ public class BitGrid {
 	// ===========================================================
 	// Fields
 	// ===========================================================
-	
-	private int[][] field;
-	
-	private int width, height;
-	
-	private FieldHandler handler;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
-	
-	public BitGrid(int width, int height) {
-		this.width = width;
-		this.height = height;
-		handler = new FieldHandler();
-		clear();
-	}
 
 	// ===========================================================
 	// Getters and Setters
 	// ===========================================================
-	
-	public int getWidth() {
-		return width;
-	}
-	
-	public int getHeight() {
-		return height;
-	}
 
 	// ===========================================================
 	// Methods from Superclass
@@ -72,23 +51,13 @@ public class BitGrid {
 	// Methods
 	// ===========================================================
 	
-	public boolean set(int x, int y) {
-		return handler.setState(x, y, true, field);
+	public boolean setState(int x, int y, boolean state, int[][] field) {
+		return false;
 	}
 	
-	public boolean clear(int x, int y) {
-		return handler.setState(x, y, false, field);
+	public boolean getState(int x, int y, int[][] field) {
+		return false;
 	}
-	
-	public boolean get(int x, int y) {
-		return handler.getState(x, y, field);
-	}
-	
-	public void clear() {
-		FieldFactory factory = new SimpleFieldFactory();
-		this.field = factory.create(width, height);
-	}
-
 
 	// ===========================================================
 	// Inner classes
